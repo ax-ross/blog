@@ -24,11 +24,24 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-4">
-                        <a href="{{ route('admin.categories.create') }}" class="btn btn-block btn-primary">Добавить категорию</a>
-                    </div>
-                    <div class="col-12">
-                        Категории
+                    <div class="card card-primary col-4 p-0">
+                        <div class="card-header">
+                            <h3 class="card-title">Добавить категорию</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form action="{{ route('admin.categories.store') }}" method="post">
+                            @csrf
+                            <div class="card-body">
+                                <label for="title">Название категории</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Введите название категории" required>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <input type="submit" class="btn btn-primary" value="Добавить">
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- /.row -->

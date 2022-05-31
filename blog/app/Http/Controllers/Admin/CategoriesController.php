@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Requests\Admin\Category\StoreCategoryRequest;
+use App\Http\Requests\Admin\Category\UpdateCategoryRequest;
 use App\Models\Category;
 
 class CategoriesController extends Controller
@@ -21,22 +21,22 @@ class CategoriesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCategoryRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\Admin\Category\StoreCategoryRequest  $request
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $data = $request->validated();
+        Category::create($data);
+        return to_route('admin.categories.index');
     }
 
     /**
@@ -64,7 +64,7 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCategoryRequest  $request
+     * @param  \App\Http\Requests\Admin\Category\UpdateCategoryRequest  $request
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
