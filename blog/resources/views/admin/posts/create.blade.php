@@ -24,7 +24,7 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="card card-primary col-4 p-0">
+                    <div class="card card-primary col-6 p-0">
                         <div class="card-header">
                             <h3 class="card-title">Добавить пост</h3>
                         </div>
@@ -33,14 +33,20 @@
                         <form action="{{ route('admin.posts.store') }}" method="post">
                             @csrf
                             <div class="card-body">
-                                <label for="title">Название поста</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Введите название поста" required value="{{ old('title') }}">
-                                @error('title')
+                                <div class="form-group">
+                                    <label for="title">Название поста</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                           placeholder="Введите название поста" required value="{{ old('title') }}">
+                                    @error('title')
                                     <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="summernote">Контент поста</label>
+                                    <textarea name="content" id="summernote" class="form-control"></textarea>
+                                </div>
                             </div>
                             <!-- /.card-body -->
-
                             <div class="card-footer">
                                 <input type="submit" class="btn btn-primary" value="Добавить">
                             </div>

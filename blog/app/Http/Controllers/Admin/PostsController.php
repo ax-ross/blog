@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Posts\StoreTagRequest;
 use App\Http\Requests\Admin\Posts\UpdateTagRequest;
+use App\Models\Post;
 use App\Models\Tag;
 
 class PostsController extends Controller
@@ -12,32 +13,32 @@ class PostsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\Admin\Posts\StoreTagRequest  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreTagRequest $request)
     {
-        //
+        $data = $request->validated();
+        Post::create($data);
+        return to_route('admin.posts.index');
     }
 
     /**
