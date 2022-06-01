@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard</h1>
+                        <h1 class="m-0">{{ $category->title }}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -26,23 +26,24 @@
                 <div class="row">
                     <div class="card card-primary col-4 p-0">
                         <div class="card-header">
-                            <h3 class="card-title">Добавить категорию</h3>
+                            <h3 class="card-title">Редактировать категорию</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('admin.categories.store') }}" method="post">
+                        <form action="{{ route('admin.categories.update', $category) }}" method="post">
+                            @method('patch')
                             @csrf
                             <div class="card-body">
                                 <label for="title">Название категории</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="Введите название категории" required value="{{ old('title') }}">
                                 @error('title')
-                                    <div class="text-danger">{{ $message }}</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <input type="submit" class="btn btn-primary" value="Добавить">
+                                <input type="submit" class="btn btn-primary" value="Изменить">
                             </div>
                         </form>
                     </div>
