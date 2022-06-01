@@ -35,6 +35,9 @@
                             <div class="card-body">
                                 <label for="title">Название категории</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="Введите название категории" required>
+                                @error('title')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <!-- /.card-body -->
 
