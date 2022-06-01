@@ -62,9 +62,15 @@
                                         <td>
                                             <a class="mx-2" href="{{ route('admin.categories.edit', $category) }}"><i
                                                     class="fa fa-pencil-alt"></i></a>
-                                            <a class="mx-2 text-danger"
-                                               href="{{ route('admin.categories.destroy', $category) }}"><i
-                                                    class="far fa-trash-alt"></i></a>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('admin.categories.destroy', $category) }}" method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="text-danger border-0 bg-transparent">
+                                                    <i class="far fa-trash-alt" role="button"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                         <td></td>
 
