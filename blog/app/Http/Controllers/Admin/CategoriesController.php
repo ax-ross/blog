@@ -65,11 +65,12 @@ class CategoriesController extends Controller
      *
      * @param  \App\Http\Requests\Admin\Category\UpdateCategoryRequest  $request
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $data = $request->validated();
+        $category->update($data);
+        return to_route('admin.categories.show', compact('category'));
     }
 
     /**

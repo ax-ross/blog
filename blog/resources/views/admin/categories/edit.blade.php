@@ -35,7 +35,7 @@
                             @csrf
                             <div class="card-body">
                                 <label for="title">Название категории</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Введите название категории" required value="{{ old('title') }}">
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Введите название категории" required value="{{ old('title') ?? $category->title  }}">
                                 @error('title')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
