@@ -68,6 +68,9 @@
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('plugins/summernote/lang/summernote-ru-RU.js') }}"></script>
 
+<!-- bs-custom-file-input -->
+<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -95,6 +98,12 @@
             ],
             lang: 'ru-RU'
         });
+    });
+</script>
+<!-- Page specific script -->
+<script>
+    $(function () {
+        bsCustomFileInput.init();
     });
 </script>
 </body>

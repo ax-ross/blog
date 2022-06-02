@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Posts\StoreTagRequest;
 use App\Http\Requests\Admin\Posts\UpdateTagRequest;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -37,6 +38,8 @@ class PostsController extends Controller
     public function store(StoreTagRequest $request)
     {
         $data = $request->validated();
+        $data['preview_image'] = Storage::put('/images', $data['preview_image']);
+        $data['main_image'] = Storage::put('/images', $data['main_image']);
         Post::create($data);
         return to_route('admin.posts.index');
     }

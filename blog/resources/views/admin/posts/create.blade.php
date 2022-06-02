@@ -24,13 +24,13 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="card card-primary col-6 p-0">
+                    <div class="card card-primary col-lg-6 p-0">
                         <div class="card-header">
                             <h3 class="card-title">Добавить пост</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('admin.posts.store') }}" method="post">
+                        <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -44,6 +44,27 @@
                                 <div class="form-group">
                                     <label for="summernote">Контент поста</label>
                                     <textarea name="content" id="summernote" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="preview_image">Изображение для превью</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="preview_image" name="preview_image">
+                                            <label class="custom-file-label" for="preview_image">Выберите изображение</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="main_image">Добавить основное изображение</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="main_image" name="main_image">
+                                            <label class="custom-file-label" for="main_image">Выберите изображение</label>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <!-- /.card-body -->
