@@ -21,7 +21,7 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="container-fluid">
+            <div class="container-fluid ml-5">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="card card-primary col-lg-6 p-0">
@@ -49,22 +49,42 @@
                                     <label for="preview_image">Изображение для превью</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="preview_image" name="preview_image">
-                                            <label class="custom-file-label" for="preview_image">Выберите изображение</label>
+                                            <input type="file" class="custom-file-input btn" id="preview_image"
+                                                   name="preview_image">
+                                            <label class="custom-file-label" for="preview_image">Выберите
+                                                изображение</label>
                                         </div>
                                     </div>
-
+                                    @error('preview_image')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label for="main_image">Добавить основное изображение</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="main_image" name="main_image">
-                                            <label class="custom-file-label" for="main_image">Выберите изображение</label>
+                                            <input type="file" class="custom-file-input form-control btn"
+                                                   id="main_image" name="main_image">
+                                            <label class="custom-file-label" for="main_image">Выберите
+                                                изображение</label>
                                         </div>
                                     </div>
-
+                                    @error('main_image')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Выберите категорию</label>
+                                    <select class="form-control" name="category_id">
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                    @if(old('category_id') == $category->id) selected @endif>{{ $category->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('category_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <!-- /.card-body -->
