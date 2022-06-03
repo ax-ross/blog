@@ -10,4 +10,14 @@ class Post extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function categories()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
 }
