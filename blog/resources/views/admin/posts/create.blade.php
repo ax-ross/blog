@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="summernote">Контент поста</label>
-                                    <textarea name="content" id="summernote" class="form-control"></textarea>
+                                    <textarea name="content" id="summernote" class="form-control">{{ old('content') }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="preview_image">Изображение для превью</label>
@@ -75,7 +75,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Выберите категорию</label>
+                                    <label>Категория</label>
                                     <select class="form-control" name="category_id">
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}"
@@ -85,6 +85,15 @@
                                     @error('category_id')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Теги</label>
+                                    <select class="select2" multiple="multiple" data-placeholder="Выберите теги" style="width: 100%;" name="tag_ids[]">
+                                        @foreach($tags as $tag)
+                                            <option value="{{ $tag->id }} @if(is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids'))) selected @endif">{{ $tag->title }}</option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
                             </div>
                             <!-- /.card-body -->

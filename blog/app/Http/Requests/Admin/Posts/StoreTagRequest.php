@@ -28,7 +28,9 @@ class StoreTagRequest extends FormRequest
             'content' => 'required|string',
             'preview_image' => 'required|image',
             'main_image' => 'required|image',
-            'category_id' => 'required|exists:categories,id'
+            'category_id' => 'required|integer|exists:categories,id',
+            'tag_ids' => 'array',
+            'tag_ids.*' => 'integer|exists:tags,id',
         ];
     }
 }

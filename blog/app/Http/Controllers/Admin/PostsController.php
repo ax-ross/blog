@@ -8,10 +8,18 @@ use App\Http\Requests\Admin\Posts\UpdateTagRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Services\PostService;
 use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
+    protected object $service;
+
+    public function __construct(PostService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,27 +37,26 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\Posts\StoreTagRequest  $request
+     * @param \App\Http\Requests\Admin\Posts\StoreTagRequest $request
      */
     public function store(StoreTagRequest $request)
     {
         $data = $request->validated();
-        $data['preview_image'] = Storage::put('/images', $data['preview_image']);
-        $data['main_image'] = Storage::put('/images', $data['main_image']);
-        Post::create($data);
+        $this->service->store($data);
         return to_route('admin.posts.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param \App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
     public function show(Tag $tag)
@@ -60,7 +67,7 @@ class PostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param \App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
     public function edit(Tag $tag)
@@ -71,8 +78,8 @@ class PostsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\Posts\UpdateTagRequest  $request
-     * @param  \App\Models\Tag  $tag
+     * @param \App\Http\Requests\Admin\Posts\UpdateTagRequest $request
+     * @param \App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateTagRequest $request, Tag $tag)
@@ -83,7 +90,7 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param \App\Models\Tag $tag
      * @return \Illuminate\Http\Response
      */
     public function destroy(Tag $tag)
