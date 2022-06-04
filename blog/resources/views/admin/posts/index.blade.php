@@ -53,6 +53,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Название</th>
+                                        <th>Категория</th>
                                         <th>Дата обновления</th>
                                         <th>Дата добавления</th>
                                     </tr>
@@ -62,6 +63,7 @@
                                         <tr>
                                             <td>{{ $post->id }}</td>
                                             <td>{{ $post->title }}</td>
+                                            <td><a href="{{ route('admin.categories.show', $post->category) }}">{{ ($post->category->title) }}</a></td>
                                             <td>{{ $post->updated_at }}</td>
                                             <td>{{ $post->created_at }}</td>
                                             <td>
