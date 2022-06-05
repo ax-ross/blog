@@ -21,5 +21,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('categories', \App\Http\Controllers\Admin\CategoriesController::class);
     Route::resource('tags', \App\Http\Controllers\Admin\TagsController::class);
     Route::resource('posts', \App\Http\Controllers\Admin\PostsController::class);
+    Route::resource('users', \App\Http\Controllers\Admin\UsersController::class);
 });
 Auth::routes();
