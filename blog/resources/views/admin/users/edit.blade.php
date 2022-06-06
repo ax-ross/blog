@@ -34,11 +34,34 @@
                             @method('patch')
                             @csrf
                             <div class="card-body">
-                                <label for="name">Имя пользователя</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Введите имя пользователя" required value="{{ old('name') ?? $user->name  }}">
-                                @error('name')
-                                <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                <div class="form-group">
+                                    <label for="name">Имя пользователя</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Введите имя пользователя" required value="{{ old('name') ?? $user->name  }}">
+                                    @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Введите email" required value="{{ old('email') ?? $user->email }}">
+                                    @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Пароль</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="пароль" >
+                                    @error('password')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password_confirmation">Подтвердите пароль</label>
+                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="пароль" >
+                                    @error('password_confirmation')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                             <!-- /.card-body -->
 

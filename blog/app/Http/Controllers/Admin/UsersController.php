@@ -46,22 +46,20 @@ class UsersController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function show(User $user)
     {
-        //
+        return view('admin.users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -69,18 +67,24 @@ class UsersController extends Controller
      *
      * @param  \App\Http\Requests\Admin\Users\UpdateUserRequest  $request
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+        if (is_null($data['password'])) {
+            unset($data['password']);
+        } else {
+            $data['password'] = Hash::make($data['password']);
+        }
+
+        $user->update($data);
+        return to_route('admin.users.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {

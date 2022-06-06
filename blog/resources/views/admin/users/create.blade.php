@@ -55,7 +55,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="password_confirmation">Подтверждите пароль</label>
+                                    <label for="password_confirmation">Подтвердите пароль</label>
                                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="пароль" required>
                                     @error('password_confirmation')
                                     <div class="text-danger">{{ $message }}</div>
