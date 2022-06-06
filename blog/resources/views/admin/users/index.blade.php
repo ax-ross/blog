@@ -52,6 +52,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Имя пользователя</th>
+                                        <th>Email пользователя</th>
+                                        <td>Роль пользователя</td>
                                         <th>Дата обновления</th>
                                         <th>Дата добавления</th>
                                     </tr>
@@ -61,6 +63,8 @@
                                         <tr>
                                             <td>{{ $user->id }}</td>
                                             <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->role }}</td>
                                             <td>{{ $user->updated_at }}</td>
                                             <td>{{ $user->created_at }}</td>
                                             <td>

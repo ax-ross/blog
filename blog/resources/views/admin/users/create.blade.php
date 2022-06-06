@@ -33,11 +33,34 @@
                         <form action="{{ route('admin.users.store') }}" method="post">
                             @csrf
                             <div class="card-body">
-                                <label for="name">Имя пользователя</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Введите имя пользователя" required value="{{ old('name') }}">
-                                @error('name')
+                                <div class="form-group">
+                                    <label for="name">Имя пользователя</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Введите имя пользователя" required value="{{ old('name') }}">
+                                    @error('name')
                                     <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Введите email" required value="{{ old('email') }}">
+                                    @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Пароль</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="пароль" required>
+                                    @error('password')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password_confirmation">Подтверждите пароль</label>
+                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="пароль" required>
+                                    @error('password_confirmation')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                             <!-- /.card-body -->
 

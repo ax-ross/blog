@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Users\StoreUserRequest;
 use App\Http\Requests\Admin\Users\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -32,11 +33,13 @@ class UsersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\Admin\Users\StoreUserRequest  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['password'] = Hash::make($data['password']);
+        User::create($data);
+        return to_route('admin.users.index');
     }
 
     /**
