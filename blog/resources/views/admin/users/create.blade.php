@@ -35,29 +35,45 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Имя пользователя</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Введите имя пользователя" required value="{{ old('name') }}">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           placeholder="Введите имя пользователя" required value="{{ old('name') }}">
                                     @error('name')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email" name="email" placeholder="Введите email" required value="{{ old('email') }}">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                           placeholder="Введите email" required value="{{ old('email') }}">
                                     @error('email')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Пароль</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="пароль" required>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                           placeholder="пароль" required>
                                     @error('password')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="password_confirmation">Подтвердите пароль</label>
-                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="пароль" required>
+                                    <input type="password" class="form-control" id="password_confirmation"
+                                           name="password_confirmation" placeholder="пароль" required>
                                     @error('password_confirmation')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Выберите роль</label>
+                                    <select class="form-control" name="role">
+                                        @foreach($roles as $id => $role)
+                                            <option value="{{ $id }}"
+                                                    @if(old('$role') == $id) selected @endif>{{ $role }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('role')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>

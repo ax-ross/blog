@@ -18,7 +18,8 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.users.index', compact('users'));
+        $roles = User::getRoles();
+        return view('admin.users.index', compact('users', 'roles'));
     }
 
     /**
@@ -27,7 +28,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = User::getRoles();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -50,7 +52,8 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.users.show', compact('user'));
+        $roles = User::getRoles();
+        return view('admin.users.show', compact('user', 'roles'));
     }
 
     /**
@@ -60,7 +63,8 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = User::getRoles();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**

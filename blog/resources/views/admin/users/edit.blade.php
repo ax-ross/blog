@@ -62,6 +62,18 @@
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label>Выберите роль</label>
+                                    <select class="form-control" name="role">
+                                        @foreach($roles as $id => $role)
+                                            <option value="{{ $id }}"
+                                                    @if($user->role == $id) selected @endif>{{ $role }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('role')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                             <!-- /.card-body -->
 
