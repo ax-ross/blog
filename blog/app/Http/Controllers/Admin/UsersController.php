@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Users\StoreUserRequest;
 use App\Http\Requests\Admin\Users\UpdateUserRequest;
 use App\Mail\User\PasswordMail;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -15,6 +16,14 @@ use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
+
+    protected object $service;
+
+    public function __construct(UserService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,13 +53,7 @@ class UsersController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
-        if (!$data['password']) {
-            $data['password'] = Str::random(10);
-        }
-        Mail::to($data['email'])->send(new PasswordMail($data['password']));
-        $data['password'] = Hash::make($data['password']);
-        $user = User::create($data);
-        event(new Registered($user));
+        $this->service->store($data);
         return to_route('admin.users.index');
     }
 
