@@ -52,7 +52,7 @@
                                 <div class="form-group">
                                     <label for="password">Пароль</label>
                                     <input type="password" class="form-control" id="password" name="password"
-                                           placeholder="пароль" required>
+                                           placeholder="пароль">
                                     @error('password')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     <label for="password_confirmation">Подтвердите пароль</label>
                                     <input type="password" class="form-control" id="password_confirmation"
-                                           name="password_confirmation" placeholder="пароль" required>
+                                           name="password_confirmation" placeholder="пароль">
                                     @error('password_confirmation')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
