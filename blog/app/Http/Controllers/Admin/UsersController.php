@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Users\StoreUserRequest;
 use App\Http\Requests\Admin\Users\UpdateUserRequest;
 use App\Mail\User\PasswordMail;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -48,7 +49,8 @@ class UsersController extends Controller
         }
         Mail::to($data['email'])->send(new PasswordMail($data['password']));
         $data['password'] = Hash::make($data['password']);
-        User::create($data);
+        $user = User::create($data);
+        event(new Registered($user));
         return to_route('admin.users.index');
     }
 

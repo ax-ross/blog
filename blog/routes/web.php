@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index.page');
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('index');
     Route::resource('categories', \App\Http\Controllers\Admin\CategoriesController::class);
     Route::resource('tags', \App\Http\Controllers\Admin\TagsController::class);
     Route::resource('posts', \App\Http\Controllers\Admin\PostsController::class);
     Route::resource('users', \App\Http\Controllers\Admin\UsersController::class);
 });
-Auth::routes();
+Auth::routes(['verify' => true]);
