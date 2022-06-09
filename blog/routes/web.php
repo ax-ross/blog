@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index.page');
 
+Route::middleware(['auth', 'verified'])->prefix('personal')->name('personal.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Personal\IndexController::class, 'index'])->name('index');
+    Route::get('liked-posts', [\App\Http\Controllers\Personal\LikedPostsController::class, 'index'])->name('liked-posts.index');
+    Route::get('user-comments', [\App\Http\Controllers\Personal\UserCommentsController::class, 'index'])->name('user-comments.index');
+});
+
 Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('index');
     Route::resource('categories', \App\Http\Controllers\Admin\CategoriesController::class);
