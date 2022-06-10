@@ -23,7 +23,15 @@ Route::middleware(['auth', 'verified'])->prefix('personal')->name('personal.')->
         Route::get('/', [\App\Http\Controllers\Personal\LikedPostsController::class, 'index'])->name('index');
         Route::delete('/{post}', [\App\Http\Controllers\Personal\LikedPostsController::class, 'destroy'])->name('destroy');
     });
-    Route::get('user-comments', [\App\Http\Controllers\Personal\UserCommentsController::class, 'index'])->name('user-comments.index');
+//    Route::prefix('user-comments')->name('user-comments.')->group(function () {
+//
+//        Route::get('/', [\App\Http\Controllers\UserCommentsController::class, 'index'])->name('index');
+//        Route::get('/{comment}', [\App\Http\Controllers\UserCommentsController::class, 'show'])->name('show');
+//        Route::get('/{comment}', [\App\Http\Controllers\UserCommentsController::class, 'edit'])->name('edit');
+//        Route::get('/{comment}', [\App\Http\Controllers\UserCommentsController::class, 'edit'])->name('edit');
+//        Route::delete('/{comment}', [\App\Http\Controllers\UserCommentsController::class, 'destroy'])->name('destroy');
+//    });
+    Route::prefix('user-comments')->resource('user-comments', \App\Http\Controllers\Personal\UserCommentsController::class)->except(['create', 'store']);
 });
 
 Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->name('admin.')->group(function () {
