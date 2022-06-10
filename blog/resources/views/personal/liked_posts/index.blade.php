@@ -58,12 +58,12 @@
                                     <tr>
                                         <td>{{ $post->id }}</td>
                                         <td>{{ $post->title }}</td>
-                                        <td><a href="{{ route('admin.categories.show', $post->category) }}">{{ ($post->category->title) }}</a></td>
+                                        <td>{{ ($post->category->title) }}</td>
                                         <td>{{ $post->updated_at }}</td>
                                         <td>{{ $post->created_at }}</td>
                                         <td>
                                             <a class="mx-2"
-                                               href="{{ route('admin.posts.show', $post) }}"><i
+                                               href="{{ route('personal.liked-posts.show', $post) }}"><i
                                                     class="fa fa-eye"></i></a>
                                         </td>
                                         <td>
