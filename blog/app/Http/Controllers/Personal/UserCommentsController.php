@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Personal;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class UserCommentsController extends Controller
@@ -20,19 +21,16 @@ class UserCommentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        return view('personal.user_comments.show', compact('comment'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {

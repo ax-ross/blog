@@ -10,4 +10,9 @@ class Comment extends Model
     use HasFactory;
 
     protected $guarded = false;
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }

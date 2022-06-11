@@ -47,6 +47,7 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Пост</th>
                                     <th>Сообщение</th>
                                     <th>Дата обновления</th>
                                     <th>Дата добавления</th>
@@ -56,16 +57,17 @@
                                 @foreach($comments as $comment)
                                     <tr>
                                         <td>{{ $comment->id }}</td>
+                                        <td>{{ $comment->post->title }}</td>
                                         <td>{{ \Illuminate\Support\Str::limit($comment->message, 20) }}</td>
                                         <td>{{ $comment->updated_at }}</td>
                                         <td>{{ $comment->created_at }}</td>
                                         <td>
                                             <a class="mx-2"
-                                               href="{{ route('personal.user-comments.show', $comment) }}"><i
+                                               href="{{ route('personal.user-comments.show', $comment->id) }}"><i
                                                     class="fa fa-eye"></i></a>
                                         </td>
                                         <td><a class="mx-2"
-                                               href="{{ route('personal.user-comments.edit', $comment) }}"><i
+                                               href="{{ route('personal.user-comments.edit', $comment->id) }}"><i
                                                     class="fa fa-pencil-alt"></i></a></td>
                                         <td>
                                             <form action="{{ route('personal.user-comments.destroy', $comment->id) }}"
