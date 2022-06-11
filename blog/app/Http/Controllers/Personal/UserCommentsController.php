@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Personal;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Personal\UpdateUserCommentsRequest;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -34,25 +35,26 @@ class UserCommentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        return view('personal.user_comments.edit', compact('comment'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserCommentsRequest $request, $id)
     {
-        //
+        $data = $request->validated();
+        $comment = Comment::findOrFail($id);
+        $comment->update($data);
+        return to_route('personal.user-comments.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
