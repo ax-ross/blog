@@ -11,7 +11,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('personal.index') }}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('personal.user-comments.index') }}">Комментарии пользователя</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('personal.comments.index') }}">Комментарии пользователя</a></li>
                             <li class="breadcrumb-item active">Коменнтарий {{ $comment->id }}</li>
                         </ol>
                     </div><!-- /.col -->
@@ -61,11 +61,11 @@
                                         <td>{{ $comment->updated_at }}</td>
                                         <td>{{ $comment->created_at }}</td>
                                         <td>
-                                            <a class="mx-2" href="{{ route('personal.user-comments.edit', $comment) }}"><i
+                                            <a class="mx-2" href="{{ route('personal.comments.edit', $comment) }}"><i
                                                     class="fa fa-pencil-alt"></i></a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('personal.user-comments.destroy', $comment) }}" method="post">
+                                            <form action="{{ route('personal.comments.destroy', $comment) }}" method="post">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="text-danger border-0 bg-transparent">

@@ -11,7 +11,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('personal.index') }}">Главная</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('personal.user-comments.index') }}">Комментарии
+                            <li class="breadcrumb-item"><a href="{{ route('personal.comments.index') }}">Комментарии
                                     пользователя</a></li>
                             <li class="breadcrumb-item active">Редактирования комментария {{ $comment->id }}</li>
                         </ol>
@@ -32,7 +32,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('personal.user-comments.update', $comment) }}" method="post"
+                        <form action="{{ route('personal.comments.update', $comment) }}" method="post"
                               enctype="multipart/form-data">
                             @method('patch')
                             @csrf

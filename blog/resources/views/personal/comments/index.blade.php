@@ -63,14 +63,14 @@
                                         <td>{{ $comment->created_at }}</td>
                                         <td>
                                             <a class="mx-2"
-                                               href="{{ route('personal.user-comments.show', $comment->id) }}"><i
+                                               href="{{ route('personal.comments.show', $comment->id) }}"><i
                                                     class="fa fa-eye"></i></a>
                                         </td>
                                         <td><a class="mx-2"
-                                               href="{{ route('personal.user-comments.edit', $comment->id) }}"><i
+                                               href="{{ route('personal.comments.edit', $comment->id) }}"><i
                                                     class="fa fa-pencil-alt"></i></a></td>
                                         <td>
-                                            <form action="{{ route('personal.user-comments.destroy', $comment->id) }}"
+                                            <form action="{{ route('personal.comments.destroy', $comment->id) }}"
                                                   method="post">
                                                 @method('delete')
                                                 @csrf
