@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index.page');
-Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog');
+Route::get('/posts', [\App\Http\Controllers\PostsController::class, 'index'])->name('posts.index');
+Route::get('posts/{post}', [\App\Http\Controllers\PostsController::class, 'show'])->name('posts.show');
 
 Route::middleware(['auth', 'verified'])->prefix('personal')->name('personal.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Personal\IndexController::class, 'index'])->name('index');

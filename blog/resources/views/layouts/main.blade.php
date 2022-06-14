@@ -30,7 +30,7 @@
                         <a class="nav-link" href="about.html">О нас</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="{{ route('blog') }}" >Блог</a>
+                        <a class="nav-link" href="{{ route('posts.index') }}" >Блог</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Контакты</a>
