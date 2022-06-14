@@ -11,7 +11,7 @@
                                 <img src="{{ 'storage/' . $post->preview_image }}" alt="blog post">
                             </div>
                             <p class="blog-post-category">{{ $post->category->title }}</p>
-                            <a href="#" class="blog-post-permalink">
+                            <a href="{{ route('posts.show', $post) }}" class="blog-post-permalink">
                                 <h6 class="blog-post-title">{{ $post->title }}</h6>
                             </a>
                         </div>
@@ -32,7 +32,7 @@
                                     <img src="{{ 'storage/' . $post->preview_image }}" alt="blog post">
                                 </div>
                                 <p class="blog-post-category">{{ $post->category->title }}</p>
-                                <a href="#!" class="blog-post-permalink">
+                                <a href="{{ route('posts.show', $post) }}" class="blog-post-permalink">
                                     <h6 class="blog-post-title">{{ $post->title }}</h6>
                                 </a>
                             </div>
@@ -47,7 +47,7 @@
                         <ul class="post-list">
                             @foreach($mostLikedPosts as $post)
                             <li class="post">
-                                <a href="#!" class="post-permalink media">
+                                <a href="{{ route('posts.show', $post) }}" class="post-permalink media">
                                     <img src="{{ 'storage/' . $post->preview_image }}" alt="blog post">
                                     <div class="media-body">
                                         <h6 class="post-title">{{ $post->title }}</h6>
