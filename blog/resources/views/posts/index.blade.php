@@ -10,7 +10,30 @@
                             <div class="blog-post-thumbnail-wrapper">
                                 <img src="{{ 'storage/' . $post->preview_image }}" alt="blog post">
                             </div>
-                            <p class="blog-post-category">{{ $post->category->title }}</p>
+                            <div class="d-flex justify-content-between">
+                                <p class="blog-post-category">{{ $post->category->title }}</p>
+                                @auth()
+                                <form action="{{ route('posts.likes.store', $post) }}" method="post">
+                                    @csrf
+                                    <span>{{ $post->likes_from_users_count }}</span>
+                                    <button type="submit" class="border-0 bg-transparent">
+
+                                            @if(auth()->user()->likedPosts->contains($post))
+                                                <i class="fas fa-heart"></i>
+                                            @else
+                                                <i class="far fa-heart"></i>
+                                            @endif
+                                    </button>
+                                </form>
+                                @endauth
+                                @guest()
+                                    <div>
+                                        <span>{{ $post->likes_from_users_count }}</span>
+                                        <span><i class="far fa-heart"></i></span>
+                                    </div>
+                                @endguest
+                            </div>
+
                             <a href="{{ route('posts.show', $post) }}" class="blog-post-permalink">
                                 <h6 class="blog-post-title">{{ $post->title }}</h6>
                             </a>
@@ -27,15 +50,15 @@
 
                         <div class="row blog-post-row">
                             @foreach($randomPosts as $post)
-                            <div class="col-md-6 blog-post" data-aos="fade-up">
-                                <div class="blog-post-thumbnail-wrapper">
-                                    <img src="{{ 'storage/' . $post->preview_image }}" alt="blog post">
+                                <div class="col-md-6 blog-post" data-aos="fade-up">
+                                    <div class="blog-post-thumbnail-wrapper">
+                                        <img src="{{ 'storage/' . $post->preview_image }}" alt="blog post">
+                                    </div>
+                                    <p class="blog-post-category">{{ $post->category->title }}</p>
+                                    <a href="{{ route('posts.show', $post) }}" class="blog-post-permalink">
+                                        <h6 class="blog-post-title">{{ $post->title }}</h6>
+                                    </a>
                                 </div>
-                                <p class="blog-post-category">{{ $post->category->title }}</p>
-                                <a href="{{ route('posts.show', $post) }}" class="blog-post-permalink">
-                                    <h6 class="blog-post-title">{{ $post->title }}</h6>
-                                </a>
-                            </div>
                             @endforeach
                         </div>
 
@@ -46,14 +69,14 @@
                         <h5 class="widget-title">Популярные посты</h5>
                         <ul class="post-list">
                             @foreach($mostLikedPosts as $post)
-                            <li class="post">
-                                <a href="{{ route('posts.show', $post) }}" class="post-permalink media">
-                                    <img src="{{ 'storage/' . $post->preview_image }}" alt="blog post">
-                                    <div class="media-body">
-                                        <h6 class="post-title">{{ $post->title }}</h6>
-                                    </div>
-                                </a>
-                            </li>
+                                <li class="post">
+                                    <a href="{{ route('posts.show', $post) }}" class="post-permalink media">
+                                        <img src="{{ 'storage/' . $post->preview_image }}" alt="blog post">
+                                        <div class="media-body">
+                                            <h6 class="post-title">{{ $post->title }}</h6>
+                                        </div>
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>

@@ -32,6 +32,28 @@
                     </section>
                     @auth()
                     <section class="comment-section">
+                        <div class="mb-5">
+                            @auth()
+                                <form action="{{ route('posts.likes.store', $post) }}" method="post">
+                                    @csrf
+                                    <span>{{ $post->likes_from_users_count }}</span>
+                                    <button type="submit" class="border-0 bg-transparent">
+
+                                        @if(auth()->user()->likedPosts->contains($post))
+                                            <i class="fas fa-heart"></i>
+                                        @else
+                                            <i class="far fa-heart"></i>
+                                        @endif
+                                    </button>
+                                </form>
+                            @endauth
+                            @guest()
+                                <div>
+                                    <span>{{ $post->likes_from_users_count }}</span>
+                                    <span><i class="far fa-heart"></i></span>
+                                </div>
+                            @endguest
+                        </div>
                         <h2 class="section-title mb-5" data-aos="fade-up">Отправить комментарий</h2>
                         <form action="{{ route('posts.comments.store', $post) }}" method="post">
                             @csrf
