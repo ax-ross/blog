@@ -18,6 +18,9 @@ class PostsController extends Controller
     public function show(Post $post)
     {
         $date = Carbon::parse($post->created_at);
-        return view('posts.show', compact('post', 'date'));
+        $relatedPosts = Post::where('category_id', $post->category_id)
+            ->where('id', '!=', $post->id)
+            ->take(3)->get();
+        return view('posts.show', compact('post', 'date', 'relatedPosts'));
     }
 }
