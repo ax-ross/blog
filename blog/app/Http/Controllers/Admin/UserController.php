@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Users\StoreUserRequest;
-use App\Http\Requests\Admin\Users\UpdateUserRequest;
+use App\Http\Requests\Admin\User\StoreUserRequest;
+use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Mail\User\PasswordMail;
 use App\Models\User;
 use App\Services\UserService;
@@ -48,7 +48,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\Users\StoreUserRequest  $request
+     * @param  \App\Http\Requests\Admin\User\StoreUserRequest  $request
      */
     public function store(StoreUserRequest $request)
     {
@@ -82,7 +82,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\Users\UpdateUserRequest  $request
+     * @param  \App\Http\Requests\Admin\User\UpdateUserRequest  $request
      * @param  \App\Models\User  $user
      */
     public function update(UpdateUserRequest $request, User $user)

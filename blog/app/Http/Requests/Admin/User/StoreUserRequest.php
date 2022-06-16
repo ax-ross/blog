@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Users;
+namespace App\Http\Requests\Admin\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateUserRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +24,10 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['nullable', 'string', 'max:255' , Rule::unique('users', 'email')->ignore($this->user)],
-            'email' => ['nullable', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->user)],
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'nullable|string|min:8|confirmed',
-            'role' => 'nullable|integer|min:1|max:2'
+            'role' => 'required|integer|min:1|max:2'
         ];
     }
 }

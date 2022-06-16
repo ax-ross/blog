@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Posts\StorePostRequest;
-use App\Http\Requests\Admin\Posts\UpdatePostRequest;
+use App\Http\Requests\Admin\Post\StorePostRequest;
+use App\Http\Requests\Admin\Post\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -44,7 +44,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\Admin\Posts\StorePostRequest $request
+     * @param \App\Http\Requests\Admin\Post\StorePostRequest $request
      */
     public function store(StorePostRequest $request)
     {
@@ -78,7 +78,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\Admin\Posts\UpdatePostRequest $request
+     * @param \App\Http\Requests\Admin\Post\UpdatePostRequest $request
      * @param \App\Models\Post $post
      */
     public function update(UpdatePostRequest $request, Post $post)

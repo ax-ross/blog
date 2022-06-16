@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Tags\StoreTagRequest;
-use App\Http\Requests\Admin\Tags\UpdateTagRequest;
+use App\Http\Requests\Admin\Tag\StoreTagRequest;
+use App\Http\Requests\Admin\Tag\UpdateTagRequest;
 use App\Models\Tag;
 
 class TagController extends Controller
@@ -31,7 +31,7 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\Tags\StoreTagRequest  $request
+     * @param  \App\Http\Requests\Admin\Tag\StoreTagRequest  $request
      */
     public function store(StoreTagRequest $request)
     {
@@ -63,7 +63,7 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\Tags\UpdateTagRequest  $request
+     * @param  \App\Http\Requests\Admin\Tag\UpdateTagRequest  $request
      * @param  \App\Models\Tag  $tag
      */
     public function update(UpdateTagRequest $request, Tag $tag)

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Personal;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Personal\UpdateCommentsRequest;
+use App\Http\Requests\Personal\UpdateCommentRequest;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 
@@ -41,7 +41,7 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(UpdateCommentsRequest $request, Comment $comment)
+    public function update(UpdateCommentRequest $request, Comment $comment)
     {
         $data = $request->validated();
         $comment->update($data);
