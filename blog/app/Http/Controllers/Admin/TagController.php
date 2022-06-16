@@ -7,7 +7,7 @@ use App\Http\Requests\Admin\Tags\StoreTagRequest;
 use App\Http\Requests\Admin\Tags\UpdateTagRequest;
 use App\Models\Tag;
 
-class TagsController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Carbon\Carbon;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     public function index()
     {

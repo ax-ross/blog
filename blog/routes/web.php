@@ -15,24 +15,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index.page');
-Route::get('/posts', [\App\Http\Controllers\PostsController::class, 'index'])->name('posts.index');
-Route::get('posts/{post}', [\App\Http\Controllers\PostsController::class, 'show'])->name('posts.show');
+Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+Route::get('posts/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 
 Route::middleware(['auth', 'verified'])->prefix('personal')->name('personal.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Personal\IndexController::class, 'index'])->name('index');
-    Route::get('liked-posts', [\App\Http\Controllers\Personal\LikedPostsController::class, 'index'])->name('liked-posts.index');
+    Route::get('liked-posts', [\App\Http\Controllers\Personal\LikedPostController::class, 'index'])->name('liked-posts.index');
     Route::prefix('liked-posts')->name('liked-posts.')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Personal\LikedPostsController::class, 'index'])->name('index');
-        Route::delete('/{post}', [\App\Http\Controllers\Personal\LikedPostsController::class, 'destroy'])->name('destroy');
+        Route::get('/', [\App\Http\Controllers\Personal\LikedPostController::class, 'index'])->name('index');
+        Route::delete('/{post}', [\App\Http\Controllers\Personal\LikedPostController::class, 'destroy'])->name('destroy');
     });
-    Route::prefix('comments')->resource('comments', \App\Http\Controllers\Personal\CommentsController::class)->except(['create', 'store']);
+    Route::prefix('comments')->resource('comments', \App\Http\Controllers\Personal\CommentController::class)->except(['create', 'store']);
 });
 
 Route::middleware(['auth', 'admin', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('index');
-    Route::resource('categories', \App\Http\Controllers\Admin\CategoriesController::class);
-    Route::resource('tags', \App\Http\Controllers\Admin\TagsController::class);
-    Route::resource('posts', \App\Http\Controllers\Admin\PostsController::class);
-    Route::resource('users', \App\Http\Controllers\Admin\UsersController::class);
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('tags', \App\Http\Controllers\Admin\TagController::class);
+    Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
 });
 Auth::routes(['verify' => true]);

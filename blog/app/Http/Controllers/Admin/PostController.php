@@ -11,7 +11,7 @@ use App\Models\Tag;
 use App\Services\PostService;
 use Illuminate\Support\Facades\Storage;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     protected object $service;
 

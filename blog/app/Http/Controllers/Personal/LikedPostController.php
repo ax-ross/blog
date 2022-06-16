@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Personal;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 
-class LikedPostsController extends Controller
+class LikedPostController extends Controller
 {
     public function index()
     {
