@@ -16,7 +16,8 @@
 <header class="edica-header edica-landing-header">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="{{ route('index.page') }}"><img src="{{ asset('assets/images/logo.svg') }}"alt="Edica"></a>
+            <a class="navbar-brand" href="{{ route('index.page') }}"><img src="{{ asset('assets/images/logo.svg') }}"
+                                                                          alt="Edica"></a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav"
                     aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -24,19 +25,35 @@
             <div class="collapse navbar-collapse" id="edicaMainNav">
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('index.page') }}">Главная <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('index.page') }}">Главная <span
+                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">О нас</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="{{ route('posts.index') }}" >Блог</a>
+                        <a class="nav-link" href="{{ route('posts.index') }}">Блог</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Контакты</a>
                     </li>
+
+
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0">
+                    @if (Route::has('login'))
+                        @auth
+                            <li class="nav-item"><a href="{{ route('personal.index') }}" class="nav-link">Личный кабинет</a></li>
+                        @else
+                            <li class="nav-item"><a href="{{ route('login') }}"
+                                                    class="nav-link">Вход</a></li>
+
+                            @if (Route::has('register'))
+                                <li class="nav-item"><a href="{{ route('register') }}"
+                                                        class="nav-link">Регистрация</a></li>
+                            @endif
+                        @endauth
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="#"><span
                                 class="flag-icon flag-icon-squared rounded-circle flag-icon-ru"></span> Ru</a>
