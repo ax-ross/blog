@@ -14,6 +14,18 @@
                     {!! $post->content !!}
                 </div>
             </section>
+            <section class="post-tags mt-5 mx-auto">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title mb-4" data-aos="fade-up">Теги</h2>
+                    <div class="row">
+                        @foreach($post->tags as $tag)
+                            <div class="col-2 bg-light mx-5 text-center p-3">
+                                {{ $tag->title }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
             <div class="row">
                 <div class="col-lg-9 mx-auto">
                     <section class="related-posts">
@@ -31,61 +43,62 @@
                         </div>
                     </section>
                     @auth()
-                    <section class="comment-section">
-                        <div class="mb-5">
-                            @auth()
-                                <form action="{{ route('posts.likes.store', $post) }}" method="post">
-                                    @csrf
-                                    <span>{{ $post->likes_from_users_count }}</span>
-                                    <button type="submit" class="border-0 bg-transparent">
+                        <section class="comment-section">
+                            <div class="mb-5">
+                                @auth()
+                                    <form action="{{ route('posts.likes.store', $post) }}" method="post">
+                                        @csrf
+                                        <span>{{ $post->likes_from_users_count }}</span>
+                                        <button type="submit" class="border-0 bg-transparent">
 
-                                        @if(auth()->user()->likedPosts->contains($post))
-                                            <i class="fas fa-heart"></i>
-                                        @else
-                                            <i class="far fa-heart"></i>
-                                        @endif
-                                    </button>
-                                </form>
-                            @endauth
-                            @guest()
-                                <div>
-                                    <span>{{ $post->likes_from_users_count }}</span>
-                                    <span><i class="far fa-heart"></i></span>
-                                </div>
-                            @endguest
-                        </div>
-                        <h2 class="section-title mb-5" data-aos="fade-up">Отправить комментарий</h2>
-                        <form action="{{ route('posts.comments.store', $post) }}" method="post">
-                            @csrf
-                            <div class="row">
-                                <div class="form-group col-12" data-aos="fade-up">
-                                    <label for="comment" class="sr-only">Comment</label>
-                                    <textarea name="message" id="comment" class="form-control"
-                                              placeholder="Напишите комментарий!" rows="10"></textarea>
-                                </div>
+                                            @if(auth()->user()->likedPosts->contains($post))
+                                                <i class="fas fa-heart"></i>
+                                            @else
+                                                <i class="far fa-heart"></i>
+                                            @endif
+                                        </button>
+                                    </form>
+                                @endauth
+                                @guest()
+                                    <div>
+                                        <span>{{ $post->likes_from_users_count }}</span>
+                                        <span><i class="far fa-heart"></i></span>
+                                    </div>
+                                @endguest
                             </div>
-                            <div class="row">
-                            </div>
-                            <div class="row">
-                                <div class="col-12" data-aos="fade-up">
-                                    <input type="submit" value="Send Message" class="btn btn-warning">
+                            <h2 class="section-title mb-5" data-aos="fade-up">Отправить комментарий</h2>
+                            <form action="{{ route('posts.comments.store', $post) }}" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="form-group col-12" data-aos="fade-up">
+                                        <label for="comment" class="sr-only">Comment</label>
+                                        <textarea name="message" id="comment" class="form-control"
+                                                  placeholder="Напишите комментарий!" rows="10"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                    </section>
+                                <div class="row">
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" data-aos="fade-up">
+                                        <input type="submit" value="Send Message" class="btn btn-warning">
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
                     @endauth
                     <section class="comment-list mb-4">
-                        <h2 class="section-title mb-5" data-aos="fade-up">Комментарии {{ $post->comments->count() }}</h2>
+                        <h2 class="section-title mb-5" data-aos="fade-up">
+                            Комментарии {{ $post->comments->count() }}</h2>
                         @foreach($post->comments as $comment)
-                        <div class="comment-text mb-4">
+                            <div class="comment-text mb-4">
                             <span class="username">
                                 <div class="font-weight-bold">
                                     {{ $comment->user->name }}
                                 </div>
                               <span class="text-muted float-right">{{ $comment->createdDate->diffForHumans() }}</span>
                             </span><!-- /.username -->
-                            {{ $comment->message }}
-                        </div>
+                                {{ $comment->message }}
+                            </div>
                         @endforeach
                     </section>
                 </div>
