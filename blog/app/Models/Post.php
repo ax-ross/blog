@@ -13,6 +13,7 @@ class Post extends Model
     protected $guarded = [];
 
     protected $withCount = ['likesFromUsers'];
+    protected $with = ['category'];
 
     public function category()
     {
