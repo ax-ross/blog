@@ -21,4 +21,14 @@ class UserService
         $user = User::create($data);
         event(new Registered($user));
     }
+
+    public function update($data, $user)
+    {
+        if (is_null($data['password'])) {
+            unset($data['password']);
+        } else {
+            $data['password'] = Hash::make($data['password']);
+        }
+        $user->update($data);
+    }
 }

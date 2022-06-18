@@ -88,13 +88,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
-        if (is_null($data['password'])) {
-            unset($data['password']);
-        } else {
-            $data['password'] = Hash::make($data['password']);
-        }
-
-        $user->update($data);
+        $this->service->update($data, $user);
         return to_route('admin.users.index');
     }
 
