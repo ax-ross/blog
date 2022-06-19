@@ -120,24 +120,14 @@
             <h2 class="edica-landing-section-title" data-aos="fade-up">Check our app latest blog post <br> for more
                 update.</h2>
             <div class="row">
-                <div class="col-md-4 landing-blog-post" data-aos="fade-right">
-                    <img src="{{ asset('assets/images/rectangle.png') }}" alt="blog post" class="blog-post-thumbnail">
-                    <p class="blog-post-category">Blog post</p>
-                    <h4 class="blog-post-title">Check our latest blog post for more update.</h4>
-                    <a href="#!" class="blog-post-link">Learn more</a>
-                </div>
-                <div class="col-md-4 landing-blog-post" data-aos="fade-up">
-                    <img src="{{ asset('assets/images/rectangle-copy.png') }}" alt="blog post" class="blog-post-thumbnail">
-                    <p class="blog-post-category">Blog post</p>
-                    <h4 class="blog-post-title">Check our latest blog post for more update.</h4>
-                    <a href="#!" class="blog-post-link">Learn more</a>
-                </div>
-                <div class="col-md-4 landing-blog-post" data-aos="fade-left">
-                    <img src="{{ asset('assets/images/rectangle-copy-2.png') }}" alt="blog post" class="blog-post-thumbnail">
-                    <p class="blog-post-category">Blog post</p>
-                    <h4 class="blog-post-title">Check our latest blog post for more update.</h4>
-                    <a href="#!" class="blog-post-link">Learn more</a>
-                </div>
+                @foreach($mostLikedPosts as $post)
+                    <div class="col-md-4 landing-blog-post" data-aos="fade-up">
+                        <img src="{{ 'storage/' . $post->preview_image }}" alt="blog post" class="blog-post-thumbnail">
+                        <p class="blog-post-category">{{ $post->category->title }}</p>
+                        <h4 class="blog-post-title">{{ $post->title }}</h4>
+                        <a href="{{ route('posts.show', $post) }}" class="blog-post-link">Читать</a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
