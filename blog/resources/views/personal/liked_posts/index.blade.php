@@ -63,7 +63,7 @@
                                         <td>{{ $post->created_at }}</td>
                                         <td>
                                             <a class="mx-2"
-                                               href="{{ route('personal.liked-posts.show', $post) }}"><i
+                                               href="{{ route('posts.show', $post) }}"><i
                                                     class="fa fa-eye"></i></a>
                                         </td>
                                         <td>
